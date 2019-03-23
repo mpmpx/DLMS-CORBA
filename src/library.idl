@@ -1,0 +1,25 @@
+module LibraryInterface {
+
+	struct ID {
+		string libraryName;
+		string IDType;
+		string IDNum;
+		long length;
+	};
+
+	typedef sequence<string> ItemID;
+	typedef sequence<string> ItemName;
+	typedef sequence<long> Quantity;
+
+	interface LibraryServer {
+		string addItem (in ID managerID, in ID itemID, in string itemName, in long quantity);
+		string deleteItem (in ID managerID, in ID itemID, in long quantity);
+		string listItemAvailability (in ID managerID);	
+
+		string borrowItem (in ID userID, in ID itemID, in long numberOfDay);
+		string findItem (in ID userID, in string itemName, in boolean recursive);
+		string returnItem (in ID userID, in ID itemID);
+		string exchangeItem (in ID userID, in ID oldItemID, in ID newItemID);
+		string addWaitList (in ID userID, in ID itemID);
+	};
+};
